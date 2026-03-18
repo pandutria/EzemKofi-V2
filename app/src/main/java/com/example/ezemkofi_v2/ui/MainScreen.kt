@@ -15,6 +15,7 @@ import com.example.ezemkofi_v2.data.model.Coffee
 import com.example.ezemkofi_v2.data.model.User
 import com.example.ezemkofi_v2.databinding.ActivityMainScreenBinding
 import com.example.ezemkofi_v2.ui.adapter.CategoryAdapter
+import com.example.ezemkofi_v2.ui.adapter.CoffeeAdapter
 import com.example.ezemkofi_v2.ui.adapter.CoffeeByCategoryAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,6 +41,7 @@ class MainScreen : AppCompatActivity() {
         me()
         category()
         coffeeByCategory()
+        coffee()
     }
 
     fun category() {
@@ -93,12 +95,45 @@ class MainScreen : AppCompatActivity() {
                             data.getString("name"),
                             data.getDouble("rating"),
                             data.getDouble("price"),
-                            data.getString("imagePath")
+                            data.getString("imagePath"),
+                            data.getString("category")
                         )
                     )
                 }
 
                 binding.rvCoffeeByCategory.adapter = CoffeeByCategoryAdapter(coffeByCategoryList)
+            }
+        }
+    }
+
+    fun coffee() {
+        val coffeeAdapter: MutableList<Coffee> = mutableListOf()
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                HttpHandler().request(
+                    "coffee"
+                )
+            }
+
+            if (result.code in 200..300) {
+                val array = JSONArray(result.body)
+
+                for (i in 0 until array.length()) {
+                    val data = array.getJSONObject(i)
+
+                    coffeeAdapter.add(
+                        Coffee(
+                            data.getInt("id"),
+                            data.getString("name"),
+                            data.getDouble("rating"),
+                            data.getDouble("price"),
+                            data.getString("imagePath"),
+                            data.getString("category")
+                        )
+                    )
+                }
+
+                binding.rvCoffee.adapter = CoffeeAdapter(coffeeAdapter)
             }
         }
     }
