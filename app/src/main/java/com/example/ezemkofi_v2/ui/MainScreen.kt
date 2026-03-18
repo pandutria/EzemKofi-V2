@@ -11,9 +11,11 @@ import com.example.ezemkofi_v2.data.HttpHandler
 import com.example.ezemkofi_v2.data.local.AuthSession
 import com.example.ezemkofi_v2.data.local.TokenManager
 import com.example.ezemkofi_v2.data.model.Category
+import com.example.ezemkofi_v2.data.model.Coffee
 import com.example.ezemkofi_v2.data.model.User
 import com.example.ezemkofi_v2.databinding.ActivityMainScreenBinding
 import com.example.ezemkofi_v2.ui.adapter.CategoryAdapter
+import com.example.ezemkofi_v2.ui.adapter.CoffeeByCategoryAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,6 +25,7 @@ import org.json.JSONObject
 class MainScreen : AppCompatActivity() {
     private var _binding: ActivityMainScreenBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,6 +39,7 @@ class MainScreen : AppCompatActivity() {
 
         me()
         category()
+        coffeeByCategory()
     }
 
     fun category() {
@@ -62,7 +66,39 @@ class MainScreen : AppCompatActivity() {
                     )
                 }
 
+                categoryList[0].isSelected = true
                 binding.rvCategory.adapter = CategoryAdapter(categoryList)
+            }
+        }
+    }
+
+    fun coffeeByCategory(categoryId: Int = 1) {
+        val coffeByCategoryList: MutableList<Coffee> = mutableListOf()
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                HttpHandler().request(
+                    "coffee?coffeeCategoryID=$categoryId"
+                )
+            }
+
+            if (result.code in 200..300) {
+                val array = JSONArray(result.body)
+
+                for (i in 0 until array.length()) {
+                    val data = array.getJSONObject(i)
+
+                    coffeByCategoryList.add(
+                        Coffee(
+                            data.getInt("id"),
+                            data.getString("name"),
+                            data.getDouble("rating"),
+                            data.getDouble("price"),
+                            data.getString("imagePath")
+                        )
+                    )
+                }
+
+                binding.rvCoffeeByCategory.adapter = CoffeeByCategoryAdapter(coffeByCategoryList)
             }
         }
     }

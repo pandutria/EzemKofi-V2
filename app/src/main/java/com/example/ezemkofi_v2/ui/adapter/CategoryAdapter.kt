@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ezemkofi_v2.R
 import com.example.ezemkofi_v2.data.model.Category
 import com.example.ezemkofi_v2.databinding.ItemCategoryBinding
+import com.example.ezemkofi_v2.ui.MainScreen
 
 class CategoryAdapter(
     private val list: MutableList<Category> = mutableListOf()
@@ -23,7 +24,6 @@ class CategoryAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        list[0].isSelected = true
         val category = list[position]
         holder.apply {
             binding.tvName.text = category.name
@@ -38,6 +38,7 @@ class CategoryAdapter(
                     list[0].isSelected = true
                 }
                 category.isSelected = true
+                ((binding.root.context as MainScreen).coffeeByCategory(category.id))
                 notifyDataSetChanged()
             }
 
@@ -48,9 +49,9 @@ class CategoryAdapter(
                 binding.tvName.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray))
                 binding.tvName.setBackgroundResource(R.drawable.bg_category_unselected)
             }
-        }
 
-        Log.d("selected", list[0].isSelected.toString())
+
+        }
     }
 
     override fun getItemCount(): Int {
