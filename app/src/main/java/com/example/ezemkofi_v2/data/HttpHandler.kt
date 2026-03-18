@@ -1,6 +1,6 @@
 package com.example.ezemkofi_v2.data
 
-import com.example.ezemkofi_v2.data.model.HttpModel
+import com.example.ezemkofi_v2.data.model.Http
 import com.example.ezemkofi_v2.util.Helper
 import java.net.HttpURLConnection
 import java.net.URL
@@ -11,7 +11,7 @@ class HttpHandler {
         method: String ?= "GET",
         token: String? = null,
         rBody: String? = null
-    ): HttpModel {
+    ): Http {
         return  try {
             val conn = URL(Helper.url + endpoint).openConnection() as HttpURLConnection
             conn.setRequestProperty("Content-Type", "application/json")
@@ -30,12 +30,13 @@ class HttpHandler {
             val body = try {
                 conn.inputStream.bufferedReader().use { it.readText() }
             } catch (e: Exception) {
+                e.printStackTrace()
                 conn.errorStream.bufferedReader().use { it.readText() }
             }
 
-            HttpModel(code, body)
+            Http(code, body)
         } catch (e: Exception) {
-            HttpModel(500, e.message ?: "error")
+            Http(500, e.message ?: "error")
         }
     }
 }
