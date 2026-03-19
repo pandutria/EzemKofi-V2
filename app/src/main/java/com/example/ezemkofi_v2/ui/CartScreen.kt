@@ -71,9 +71,11 @@ class CartScreen : AppCompatActivity() {
             }
 
             if (result.code in 200..300) {
+                CartManager.cart.clear()
                 finish()
+
             } else {
-                Helper.toast(this@CartScreen, result.body.toString())
+                Helper.toast(this@CartScreen, result.body)
             }
         }
     }
