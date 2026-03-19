@@ -15,6 +15,15 @@
         android:theme="@style/Theme.EzemKofiV2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.CartScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SearchScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CoffeeDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainScreen"
             android:exported="false" />
         <activity

@@ -1,5 +1,6 @@
 package com.example.ezemkofi_v2.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,13 @@ class MainScreen : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.etSearch.clearFocus()
+        binding.etSearch.setOnFocusChangeListener{_, hasFocus ->
+            if (hasFocus) {
+                startActivity(Intent(this, SearchScreen::class.java))
+            }
         }
 
         me()
@@ -166,5 +174,6 @@ class MainScreen : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         me()
+        binding.etSearch.clearFocus()
     }
 }

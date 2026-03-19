@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.CoffeeDetailActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutHeader">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/bg_card_detail">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/back"
+                    android:background="@drawable/bg_back"
+                    android:padding="4dp"
+                    app:tint="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Details"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="460dp">
+
+            <FrameLayout
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginBottom="80dp"
+                android:layout_gravity="bottom|center_horizontal">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/imgImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="M"
+                android:fontFamily="@font/poppins_semibold"
+                android:background="@drawable/bg_rating"
+                android:layout_gravity="end"
+                android:layout_marginRight="15dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="250dp"
+                android:padding="4dp"/>
+            
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvS"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:text="S"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:background="@drawable/bg_size_selected"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:rotation="40"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/tvM"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:text="M"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:background="@drawable/bg_size_unselected"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/green"
+                    android:layout_marginTop="80dp"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/tvL"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:text="L"
+                    android:fontFamily="@font/poppins_medium"
+                    android:background="@drawable/bg_size_unselected"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:rotation="-40"
+                    android:textColor="@color/green"
+                    android:padding="2dp"/>
+
+            </RelativeLayout>
+            
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutHeader"
+        android:layout_marginHorizontal="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latte Ingulance"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="27sp"/>
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A bold and intense shot of espresso for the true coffee aficionado."
+            android:justificationMode="inter_word"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.45"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="20sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_qty"
+                android:gravity="center"
+                android:paddingHorizontal="7dp"
+                android:paddingVertical="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/minus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/minus"
+                    app:tint="@color/green"/>
+
+                <TextView
+                    android:id="@+id/tvQty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginHorizontal="10dp"/>
+
+                <ImageView
+                    android:id="@+id/plus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/plus"
+                    app:tint="@color/green"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="ADD TO CART"
+            android:textSize="14sp"
+            app:cornerRadius="100dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,10 +1,12 @@
 package com.example.ezemkofi_v2.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ezemkofi_v2.data.model.Coffee
 import com.example.ezemkofi_v2.databinding.ItemCoffeeBinding
+import com.example.ezemkofi_v2.ui.CoffeeDetailActivity
 import com.example.ezemkofi_v2.util.Helper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +34,12 @@ class CoffeeAdapter(
             CoroutineScope(Dispatchers.Main).launch {
                 val bitmap = Helper.loadImage(coffee.imagePath)
                 binding.imgImage.setImageBitmap(bitmap)
+            }
+
+            holder.binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context, CoffeeDetailActivity::class.java)
+                intent.putExtra("id", coffee.id)
+                binding.root.context.startActivity(intent)
             }
         }
     }
