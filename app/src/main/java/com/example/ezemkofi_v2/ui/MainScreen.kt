@@ -40,10 +40,14 @@ class MainScreen : AppCompatActivity() {
         }
 
         binding.etSearch.clearFocus()
-        binding.etSearch.setOnFocusChangeListener{_, hasFocus ->
+        binding.etSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 startActivity(Intent(this, SearchScreen::class.java))
             }
+        }
+
+        binding.cart.setOnClickListener {
+            startActivity(Intent(this, CartScreen::class.java))
         }
 
         me()

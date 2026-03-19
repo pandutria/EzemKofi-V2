@@ -1,5 +1,6 @@
 package com.example.ezemkofi_v2.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.enableEdgeToEdge
@@ -86,9 +87,13 @@ class CoffeeDetailActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            coffee?.price = binding.tvPrice.text.toString().toDouble()
+
             for (i in CartManager.cart) {
                 if (i.coffee.id == coffee?.id && i.size == size) {
                     i.qty += qty
+                    startActivity(Intent(this, CartScreen::class.java))
+                    finish()
                     return@setOnClickListener
                 }
             }
@@ -100,6 +105,8 @@ class CoffeeDetailActivity : AppCompatActivity() {
                     qty,
                 )
             )
+            startActivity(Intent(this, CartScreen::class.java))
+            finish()
         }
     }
 
